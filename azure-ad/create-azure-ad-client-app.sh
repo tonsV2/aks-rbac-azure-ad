@@ -54,4 +54,3 @@ export TF_VAR_rbac_server_app_secret="${RBAC_SERVER_APP_SECRET}"
 export TF_VAR_rbac_client_app_id="${RBAC_CLIENT_APP_ID}"
 export TF_VAR_tenant_id="${RBAC_AZURE_TENANT_ID}"
 "
-
