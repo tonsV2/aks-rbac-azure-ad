@@ -144,7 +144,7 @@ You can also create RoleBinding/ClusterRoleBinding for Azure Active Directory gr
 Once all you RBAC objects are defined in Kubernetes, you can get a Kubernetes configuration file that is not admin-enabled using the `az aks get-credentials` command without the `--admin` flag.
 
 ```bash
-az aks get credentials -n CLUSTER_NAME -g RESOURCE_GROUP_NAME
+az aks get-credentials -n CLUSTER_NAME -g RESOURCE_GROUP_NAME
 ```
 
 When you are going to use `kubectl` you are going to be asked to use the Azure Device Login authentication first:
