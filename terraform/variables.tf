@@ -10,23 +10,23 @@ variable "kubernetes_version" {
 }
 
 variable "agent_count" {
-    default = 1
+  default = 1
 }
 
 variable "ssh_public_key" {
-    default = "~/.ssh/id_rsa.pub"
+  default = "~/.ssh/id_rsa.pub"
 }
 
 variable "dns_prefix" {
-    default = "azadk8s2"
+  default = "azadk8s2"
 }
 
 variable cluster_name {
-    default = "azadk8s2"
+  default = "azadk8s2"
 }
 
 variable resource_group_name {
-    default = "azure-ad-k8s2-rg"
+  default = "azure-ad-k8s2-rg"
 }
 
 variable location {
