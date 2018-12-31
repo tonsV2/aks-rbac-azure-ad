@@ -1,3 +1,5 @@
 .terraform/
 .vs/
 terraform/*.plan
+terraform/*.tfstate*
+.idea
