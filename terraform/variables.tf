@@ -6,7 +6,7 @@ variable "rbac_server_app_secret" {}
 variable "rbac_client_app_id" {}
 
 variable "kubernetes_version" {
-    default = "1.11.3"
+  default = "1.11.5"
 }
 
 variable "agent_count" {
