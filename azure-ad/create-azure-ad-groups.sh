@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 GROUP_NAME=cluster-admin
-MAIL_NICKNAME=snot
+MAIL_NICKNAME=snot # TODO: Wtf is this?
 
 CLUSTER_ADMIN_OBJECT_ID=$(az ad group show --group $GROUP_NAME --query objectId -o tsv)
 if test -z "$CLUSTER_ADMIN_OBJECT_ID"; then
