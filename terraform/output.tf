@@ -25,3 +25,7 @@ output "kube_config" {
 output "host" {
   value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.host}"
 }
+
+output "get-credentials" {
+  value = "az aks get-credentials -n ${var.cluster_name} -g ${var.resource_group_name} --admin"
+}

@@ -32,6 +32,3 @@ variable resource_group_name {
 variable location {
   default = "North Europe"
 }
-
-#TODO: output the below command populated with cluster name and resource_group_name
-# $ az aks get-credentials -n azadk8s2 -g azure-ad-k8s2-rg --admin
