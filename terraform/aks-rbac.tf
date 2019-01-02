@@ -3,13 +3,32 @@ resource "azurerm_resource_group" "k8s" {
   location = "${var.location}"
 }
 
+resource "azurerm_azuread_application" "k8s" {
+  # TODO: Use $var.name_prefix for all names
+  name = "${var.cluster_name}-sp"
+}
+
+resource "azurerm_azuread_service_principal" "k8s" {
+  application_id = "${azurerm_azuread_application.k8s.application_id}"
+}
+
+resource "random_string" "password" {
+  length = 32
+  special = true
+}
+
+resource "azurerm_azuread_service_principal_password" "k8s" {
+  end_date = "2299-12-30T23:00:00Z"
+  service_principal_id = "${azurerm_azuread_service_principal.k8s.id}"
+  value = "${random_string.password.result}"
+}
+
 resource "azurerm_kubernetes_cluster" "k8s" {
   name = "${var.cluster_name}"
   location = "${azurerm_resource_group.k8s.location}"
   resource_group_name = "${azurerm_resource_group.k8s.name}"
   dns_prefix = "${var.dns_prefix}"
   kubernetes_version = "${var.kubernetes_version}"
-
 
   linux_profile {
     admin_username = "ubuntu"
@@ -28,8 +47,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 
   service_principal {
-    client_id = "${var.client_id}"
-    client_secret = "${var.client_secret}"
+    client_id = "${azurerm_azuread_application.k8s.application_id}"
+    client_secret = "${azurerm_azuread_service_principal_password.k8s.value}"
   }
 
   tags {

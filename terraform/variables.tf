@@ -1,5 +1,3 @@
-variable "client_id" {}
-variable "client_secret" {}
 variable "tenant_id" {}
 variable "rbac_server_app_id" {}
 variable "rbac_server_app_secret" {}
