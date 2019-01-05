@@ -41,10 +41,10 @@ az ad sp create --id ${RBAC_CLIENT_APP_ID}
 rm ./manifest-client.json
 
 # grant permissions to server application
-RBAC_CLIENT_APP_RESOURCES_API_IDS=$(az ad app permission list --id $RBAC_CLIENT_APP_ID --query [].resourceAppId --out tsv | xargs echo)
-for RESOURCE_API_ID in $RBAC_CLIENT_APP_RESOURCES_API_IDS;
+RBAC_CLIENT_APP_RESOURCES_API_IDS=$(az ad app permission list --id ${RBAC_CLIENT_APP_ID} --query [].resourceAppId --out tsv | xargs echo)
+for RESOURCE_API_ID in ${RBAC_CLIENT_APP_RESOURCES_API_IDS};
 do
-  az ad app permission grant --api $RESOURCE_API_ID --id $RBAC_CLIENT_APP_ID
+  az ad app permission grant --api ${RESOURCE_API_ID} --id ${RBAC_CLIENT_APP_ID}
 done
 
 # Output terraform variables
