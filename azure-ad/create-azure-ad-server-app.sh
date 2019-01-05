@@ -9,14 +9,14 @@ export RBAC_SERVER_APP_SECRET="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w
 
 # create the Azure Active Directory server application
 echo "Creating server application..."
-az ad app create --display-name ${RBAC_SERVER_APP_NAME} \
+az ad app create --display-name "${RBAC_SERVER_APP_NAME}" \
     --password "${RBAC_SERVER_APP_SECRET}" \
     --identifier-uris "${RBAC_SERVER_APP_URL}" \
     --reply-urls "${RBAC_SERVER_APP_URL}" \
     --homepage "${RBAC_SERVER_APP_URL}" \
     --required-resource-accesses @manifest-server.json
 
-RBAC_SERVER_APP_ID=$(az ad app list --display-name $RBAC_SERVER_APP_NAME --query [].appId -o tsv)
+RBAC_SERVER_APP_ID=$(az ad app list --display-name ${RBAC_SERVER_APP_NAME} --query [].appId -o tsv)
 RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID=$(az ad app show --id ${RBAC_SERVER_APP_ID} --query oauth2Permissions[0].id -o tsv)
 
 # update the application
@@ -28,17 +28,17 @@ az ad sp create --id ${RBAC_SERVER_APP_ID}
 
 # grant permissions to server application
 echo "Granting permissions to the server application..."
-RBAC_SERVER_APP_RESOURCES_API_IDS=$(az ad app permission list --id $RBAC_SERVER_APP_ID --query [].resourceAppId --out tsv | xargs echo)
-for RESOURCE_API_ID in $RBAC_SERVER_APP_RESOURCES_API_IDS;
+RBAC_SERVER_APP_RESOURCES_API_IDS=$(az ad app permission list --id ${RBAC_SERVER_APP_ID} --query [].resourceAppId --out tsv | xargs echo)
+for RESOURCE_API_ID in ${RBAC_SERVER_APP_RESOURCES_API_IDS};
 do
-  if [ "$RESOURCE_API_ID" == "00000002-0000-0000-c000-000000000000" ]
+  if [[ "$RESOURCE_API_ID" == "00000002-0000-0000-c000-000000000000" ]]
   then
-    az ad app permission grant --api $RESOURCE_API_ID --id $RBAC_SERVER_APP_ID --scope "User.Read"
-  elif [ "$RESOURCE_API_ID" == "00000003-0000-0000-c000-000000000000" ]
+    az ad app permission grant --api ${RESOURCE_API_ID} --id ${RBAC_SERVER_APP_ID} --scope "User.Read"
+  elif [[ "$RESOURCE_API_ID" == "00000003-0000-0000-c000-000000000000" ]]
   then
-    az ad app permission grant --api $RESOURCE_API_ID --id $RBAC_SERVER_APP_ID --scope "Directory.Read.All"
+    az ad app permission grant --api ${RESOURCE_API_ID} --id ${RBAC_SERVER_APP_ID} --scope "Directory.Read.All"
   else
-    az ad app permission grant --api $RESOURCE_API_ID --id $RBAC_SERVER_APP_ID --scope "user_impersonation"
+    az ad app permission grant --api ${RESOURCE_API_ID} --id ${RBAC_SERVER_APP_ID} --scope "user_impersonation"
   fi
 done
 
