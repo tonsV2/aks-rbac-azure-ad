@@ -25,15 +25,15 @@ variable "ssh_public_key" {
 }
 
 variable "dns_prefix" {
-  default = "azadk8s2"
+  default = "tons"
 }
 
 variable cluster_name {
-  default = "azadk8s2"
+  default = "tons"
 }
 
 variable resource_group_name {
-  default = "azure-ad-k8s2-rg"
+  default = "k8s-rg"
 }
 
 variable location {
