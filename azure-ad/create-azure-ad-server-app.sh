@@ -1,11 +1,8 @@
 #!/bin/bash
 set -e
 
-# load environment variables
-export RBAC_AZURE_TENANT_ID="801dc5e8-3f2d-4070-ab27-a7497e430784"
-export RBAC_SERVER_APP_NAME="AKSAADServer2"
-export RBAC_SERVER_APP_URL="http://aksaadserver2"
-export RBAC_SERVER_APP_SECRET="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
+source .env
+RBAC_SERVER_APP_SECRET="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
 
 # create the Azure Active Directory server application
 echo "Creating server application..."
@@ -22,6 +19,7 @@ RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID=$(az ad app show --id ${RBAC_SERVER_APP_ID}
 # update the application
 az ad app update --id ${RBAC_SERVER_APP_ID} --set groupMembershipClaims=All
 
+# TODO: When does this expire?
 # create service principal for the server application
 echo "Creating service principal for server application..."
 az ad sp create --id ${RBAC_SERVER_APP_ID}
@@ -42,11 +40,11 @@ do
   fi
 done
 
-echo "The Azure Active Directory application has been created. You need to ask an Azure AD Administrator to go the Azure portal an click the `Grant permissions` button for this app."
-echo "Copy the following environment variables to the client application creation script:"
+echo "The following variables must be exported
 
-echo "
 export RBAC_SERVER_APP_ID="${RBAC_SERVER_APP_ID}"
 export RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID="${RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID}"
 export RBAC_SERVER_APP_SECRET="${RBAC_SERVER_APP_SECRET}"
 "
+
+echo "The Azure Active Directory application has been created. You need to ask an Azure AD Administrator to go the Azure portal an click the 'Grant permissions' button for this app."

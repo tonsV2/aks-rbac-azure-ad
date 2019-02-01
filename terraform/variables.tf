@@ -16,6 +16,10 @@ variable vm_size {
   default = "Standard_D8s_v3"
 }
 
+variable os_disk_size_gb {
+  default = "100"
+}
+
 variable "ssh_public_key" {
   default = "~/.ssh/id_rsa.pub"
 }

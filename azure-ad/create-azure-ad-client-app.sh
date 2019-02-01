@@ -1,14 +1,7 @@
 #!/bin/bash
 set -e
 
-# load environment variables
-export RBAC_AZURE_TENANT_ID="801dc5e8-3f2d-4070-ab27-a7497e430784"
-export RBAC_CLIENT_APP_NAME="AKSAADClient3"
-export RBAC_CLIENT_APP_URL="http://aksaadclient3"
-
-export RBAC_SERVER_APP_ID="COMPLETE_AFTER_SERVER_APP_CREATION"
-export RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID="COMPLETE_AFTER_SERVER_APP_CREATION"
-export RBAC_SERVER_APP_SECRET="COMPLETE_AFTER_SERVER_APP_CREATION"
+source .env
 
 # generate manifest for client application
 cat > ./manifest-client.json << EOF
@@ -47,10 +40,16 @@ do
   az ad app permission grant --api ${RESOURCE_API_ID} --id ${RBAC_CLIENT_APP_ID}
 done
 
-# Output terraform variables
-echo "
+RBAC_AZURE_TENANT_ID=$(az ad sp list --display-name ${RBAC_CLIENT_APP_NAME} --query "[].appOwnerTenantId" --out tsv)
+
+RBAC_AZURE_SUBSCRIPTION_ID=$(az account show --query id --out tsv)
+
+echo "The following variables must be exported
+
 export TF_VAR_rbac_server_app_id="${RBAC_SERVER_APP_ID}"
 export TF_VAR_rbac_server_app_secret="${RBAC_SERVER_APP_SECRET}"
 export TF_VAR_rbac_client_app_id="${RBAC_CLIENT_APP_ID}"
-export TF_VAR_tenant_id="${RBAC_AZURE_TENANT_ID}"
-"
+export TF_VAR_tenant_id="${RBAC_AZURE_TENANT_ID}""
+
+#export TF_VAR_client_id=$(az ad sp list --query "[?appDisplayName == '$app_name']|[].appId" --out tsv)
+#export TF_VAR_client_secret=$(az ad sp create-for-rbac --name $app_name --role="Contributor" --scopes="/subscriptions/$RBAC_AZURE_SUBSCRIPTION_ID" --query "password" --out tsv)
