@@ -11,6 +11,11 @@ variable "agent_count" {
   default = 1
 }
 
+variable vm_size {
+//  default = "Standard_DS2_v2"
+  default = "Standard_D8s_v3"
+}
+
 variable "ssh_public_key" {
   default = "~/.ssh/id_rsa.pub"
 }
