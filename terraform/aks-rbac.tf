@@ -40,7 +40,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 
   agent_pool_profile {
-    name = "default-${terraform.workspace}"
+    name = "default"
     count = "${var.agent_count}"
     vm_size = "${var.vm_size}"
     os_type = "Linux"
