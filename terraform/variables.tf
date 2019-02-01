@@ -8,7 +8,7 @@ variable "kubernetes_version" {
 }
 
 variable "agent_count" {
-  default = 1
+  default = 3
 }
 
 variable vm_size {
