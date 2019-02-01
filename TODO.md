@@ -1,3 +1,5 @@
+# Make password more secure... min_lower, min_numeric, min_special, min_upper, etc.
+
 # We don't want an AD for each env... Let all env's authenticate against the same AD
 
 # Find out which kind of vm to use for the new cluster
