@@ -33,7 +33,7 @@ variable cluster_name {
 }
 
 variable resource_group_name {
-  default = "k8s-rg"
+  default = "tons"
 }
 
 variable location {
