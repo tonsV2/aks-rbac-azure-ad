@@ -1,3 +1,15 @@
+# Find out which kind of vm to use for the new cluster
+https://azure.microsoft.com/da-dk/pricing/details/virtual-machines/linux/#d-series
+
+# Generate ssh key as part of init script
+
+# Sp not in account issue...
+* azurerm_kubernetes_cluster.k8s: Error creating/updating Managed Kubernetes Cluster "tons" (Resource Group "k8s-rg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=0 -- Original Error: Code="ServicePrincipalNotFound" Message="Service principal clientID: 8784b2fe-8de5-4a6b-b748-77d4a6c12090 not found in Active Directory tenant 6558925e-31cb-442f-88e0-3b0c475d4e38, Please see https://aka.ms/acs-sp-help for more details."
+
+# Consider how to deal with multiple environments in terms of create-azure-ad-server-app.sh and create-azure-ad-client-app.sh
+
+# Double or single square brackets... azure-ad/create-azure-ad-server-app.sh:35 - Intellij warning
+
 # Use terraform workspaces to create nonprod and prod cluster
 
 # Use terraform workspaces to name resources. All name properties should be post fixed with -workspace-name
@@ -17,6 +29,9 @@ https://docs.microsoft.com/en-us/cli/azure/ad/group?view=azure-cli-latest
 
 Extend create-azure-ad-groups.sh to also cover dashboard, dashboard-reader and other groups
 
+Possible a script for creating new group (for new projects start)
+
+# Use workspace postfix when creating AD groups... Or something. Consider how to handle dev, prod etc.
 
 # Grant access only to a specific namespace
 
@@ -27,7 +42,7 @@ https://github.com/underguiz/terraform-aks-autoscaler
 
 # Grant rights using selenium?
 
-# Use backend for storing state
+# Store state remotely
 https://docs.microsoft.com/en-us/azure/terraform/terraform-backend
 
 # Use vault - Our current handling of sensitive data is not acceptable! Right, Per?

@@ -1,3 +1,31 @@
+cd azure-ad/
+./create-azure-ad-server-app.sh
+
+# Grant permissions at portal and export vars
+
+./create-azure-ad-client-app.sh
+
+cd ../terraform/
+./terraform apply -auto-approve
+
+# Second run... Fix this the principal issue!
+./terraform apply -auto-approve
+
+az aks get-credentials -n tons -g k8s-rg --overwrite-existing --admin
+
+cd ../azure-ad
+./create-azure-ad-groups.sh
+
+kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+
+az aks get-credentials -n tons -g k8s-rg --overwrite-existing
+
+kubectl get nodes
+
+
+See helmfile stack project...
+
+
 # Secure an Azure Kubernetes cluster with Azure Active Directory and RBAC
 
 This repository contains scripts that help to automate the deployment of an RBAC-enabled Azure Kubernetes Service cluster backed by Azure Active Directory, using Azure CLI and Terraform.
