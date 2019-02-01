@@ -1,3 +1,6 @@
+# Use map, indexed by workspace, to fetch vm_size and other stuff which might differ by environment
+https://medium.com/capital-one-tech/deploying-multiple-environments-with-terraform-kubernetes-7b7f389e622
+
 # Make password more secure... min_lower, min_numeric, min_special, min_upper, etc.
 
 # We don't want an AD for each env... Let all env's authenticate against the same AD
