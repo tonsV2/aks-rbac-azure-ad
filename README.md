@@ -1,9 +1,13 @@
 cd azure-ad/
 ./create-azure-ad-server-app.sh
 
+# =================================================
 # Grant permissions at portal and export vars
 
 ./create-azure-ad-client-app.sh
+
+# =================================================
+# Export vars
 
 cd ../terraform/
 ./terraform apply -auto-approve
@@ -11,14 +15,14 @@ cd ../terraform/
 # Second run... Fix this the principal issue!
 ./terraform apply -auto-approve
 
-az aks get-credentials -n tons -g k8s-rg --overwrite-existing --admin
+az aks get-credentials -n tons-default -g tons-default --overwrite-existing --admin
 
 cd ../azure-ad
 ./create-azure-ad-groups.sh
 
 kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
-az aks get-credentials -n tons -g k8s-rg --overwrite-existing
+az aks get-credentials -n tons-default -g tons-default --overwrite-existing
 
 kubectl get nodes
 
