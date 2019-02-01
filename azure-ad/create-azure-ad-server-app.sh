@@ -40,11 +40,11 @@ do
   fi
 done
 
+echo "The Azure Active Directory application has been created. You need to ask an Azure AD Administrator to go the Azure portal an click the 'Grant permissions' button for this app."
+
 echo "The following variables must be exported
 
 export RBAC_SERVER_APP_ID="${RBAC_SERVER_APP_ID}"
 export RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID="${RBAC_SERVER_APP_OAUTH2PERMISSIONS_ID}"
 export RBAC_SERVER_APP_SECRET="${RBAC_SERVER_APP_SECRET}"
 "
-
-echo "The Azure Active Directory application has been created. You need to ask an Azure AD Administrator to go the Azure portal an click the 'Grant permissions' button for this app."

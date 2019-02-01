@@ -49,7 +49,5 @@ echo "The following variables must be exported
 export TF_VAR_rbac_server_app_id="${RBAC_SERVER_APP_ID}"
 export TF_VAR_rbac_server_app_secret="${RBAC_SERVER_APP_SECRET}"
 export TF_VAR_rbac_client_app_id="${RBAC_CLIENT_APP_ID}"
-export TF_VAR_tenant_id="${RBAC_AZURE_TENANT_ID}""
-
-#export TF_VAR_client_id=$(az ad sp list --query "[?appDisplayName == '$app_name']|[].appId" --out tsv)
-#export TF_VAR_client_secret=$(az ad sp create-for-rbac --name $app_name --role="Contributor" --scopes="/subscriptions/$RBAC_AZURE_SUBSCRIPTION_ID" --query "password" --out tsv)
+export TF_VAR_tenant_id="${RBAC_AZURE_TENANT_ID}"
+"
