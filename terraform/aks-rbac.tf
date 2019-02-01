@@ -5,7 +5,8 @@ resource "azurerm_resource_group" "k8s" {
 
 resource "azurerm_azuread_application" "k8s" {
   # TODO: Use $var.name_prefix for all names
-  name = "${var.cluster_name}-sp"
+  # TODO: Promote this to a TF_VAR_*
+  name = "AKSAADCluster"
 }
 
 resource "azurerm_azuread_service_principal" "k8s" {
