@@ -19,11 +19,6 @@ variable "agent_count" {
   default = 3
 }
 
-variable vm_size {
-//  default = "Standard_DS2_v2"
-  default = "Standard_D8s_v3"
-}
-
 variable os_disk_size_gb {
   default = "100"
 }
@@ -46,4 +41,17 @@ variable resource_group_name {
 
 variable location {
   default = "North Europe"
+}
+
+variable "workspace_to_vm_size" {
+  type = "map"
+
+  default = {
+    default = "Standard_DS2_v2"
+    dev = "Standard_DS2_v2"
+    test = "Standard_DS2_v2"
+    preprod = "Standard_DS2_v2"
+    prod = "Standard_DS2_v2"
+    janus = "Standard_D8s_v3"
+  }
 }

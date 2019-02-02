@@ -40,7 +40,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   agent_pool_profile {
     name = "default"
     count = "${var.agent_count}"
-    vm_size = "${var.vm_size}"
+    vm_size = "${lookup(var.workspace_to_vm_size, terraform.workspace)}"
     os_type = "Linux"
     os_disk_size_gb = "${var.os_disk_size_gb}"
   }
