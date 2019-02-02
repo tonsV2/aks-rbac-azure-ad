@@ -4,9 +4,7 @@ resource "azurerm_resource_group" "k8s" {
 }
 
 resource "azurerm_azuread_application" "k8s" {
-  # TODO: Use $var.name_prefix for all names
-  # TODO: Promote this to a TF_VAR_*
-  name = "AKSAADCluster-${terraform.workspace}"
+  name = "${var.aks_app_name}-${terraform.workspace}"
 }
 
 resource "azurerm_azuread_service_principal" "k8s" {
