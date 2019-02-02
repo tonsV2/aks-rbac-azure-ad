@@ -10,6 +10,9 @@ https://azure.microsoft.com/da-dk/pricing/details/virtual-machines/linux/#d-seri
 
 # Generate ssh key as part of init script
 
+# Grant sp less privileges
+https://github.com/lawrencegripper/azure-aks-terraform#least-privilidge
+
 # Sp not in account issue...
 * azurerm_kubernetes_cluster.k8s: Error creating/updating Managed Kubernetes Cluster "tons" (Resource Group "k8s-rg"): containerservice.ManagedClustersClient#CreateOrUpdate: Failure sending request: StatusCode=0 -- Original Error: Code="ServicePrincipalNotFound" Message="Service principal clientID: 8784b2fe-8de5-4a6b-b748-77d4a6c12090 not found in Active Directory tenant 6558925e-31cb-442f-88e0-3b0c475d4e38, Please see https://aka.ms/acs-sp-help for more details."
 
