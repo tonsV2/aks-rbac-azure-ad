@@ -42,8 +42,6 @@ done
 
 RBAC_AZURE_TENANT_ID=$(az ad sp list --display-name ${RBAC_CLIENT_APP_NAME} --query "[].appOwnerTenantId" --out tsv)
 
-RBAC_AZURE_SUBSCRIPTION_ID=$(az account show --query id --out tsv)
-
 echo "The following variables must be exported
 
 export TF_VAR_rbac_server_app_id="${RBAC_SERVER_APP_ID}"
