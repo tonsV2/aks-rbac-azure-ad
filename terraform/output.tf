@@ -27,5 +27,5 @@ output "host" {
 }
 
 output "get-credentials" {
-  value = "az aks get-credentials -n ${var.cluster_name}-${terraform.workspace} -g ${var.resource_group_name}-${terraform.workspace} --overwrite-existing --admin"
+  value = "az aks get-credentials -n ${azurerm_kubernetes_cluster.k8s.name} -g ${azurerm_resource_group.k8s.name} --overwrite-existing --admin"
 }
