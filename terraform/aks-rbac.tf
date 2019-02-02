@@ -17,9 +17,9 @@ resource "random_string" "password" {
 }
 
 resource "azurerm_azuread_service_principal_password" "k8s" {
-  end_date = "2299-12-30T23:00:00Z"
   service_principal_id = "${azurerm_azuread_service_principal.k8s.id}"
   value = "${random_string.password.result}"
+  end_date = "${var.service_principal_end_date}"
 }
 
 resource "azurerm_kubernetes_cluster" "k8s" {

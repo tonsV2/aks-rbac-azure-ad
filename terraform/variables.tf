@@ -7,6 +7,10 @@ variable "aks_app_name" {
   default = "AKSAADCluster"
 }
 
+variable "service_principal_end_date" {
+  default = "2299-12-30T23:00:00Z"
+}
+
 variable "kubernetes_version" {
   default = "1.11.5"
 }
