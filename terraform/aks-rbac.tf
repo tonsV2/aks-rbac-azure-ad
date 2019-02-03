@@ -19,6 +19,11 @@ resource "azurerm_azuread_service_principal_password" "k8s" {
   service_principal_id = "${azurerm_azuread_service_principal.k8s.id}"
   value = "${random_string.password.result}"
   end_date = "${var.service_principal_end_date}"
+
+# HACK: wait for service principal to come available
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
 }
 
 resource "azurerm_kubernetes_cluster" "k8s" {
