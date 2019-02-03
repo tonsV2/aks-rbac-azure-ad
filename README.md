@@ -10,10 +10,10 @@ cd azure-ad/
 # Export vars
 
 cd ../terraform/
-./terraform apply -auto-approve
+terraform apply -auto-approve
 
 # Second run... Fix this the principal issue!
-./terraform apply -auto-approve
+terraform apply -auto-approve
 
 az aks get-credentials -n tons-default -g tons-default --overwrite-existing --admin
 

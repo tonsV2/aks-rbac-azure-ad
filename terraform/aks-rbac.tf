@@ -13,7 +13,6 @@ resource "azurerm_azuread_service_principal" "k8s" {
 
 resource "random_string" "password" {
   length = 32
-  special = true
 }
 
 resource "azurerm_azuread_service_principal_password" "k8s" {
