@@ -26,6 +26,22 @@ resource "azurerm_azuread_service_principal_password" "k8s" {
   }
 }
 
+resource "azurerm_virtual_network" "k8s" {
+  name = "vnet-${terraform.workspace}"
+  location = "${azurerm_resource_group.k8s.location}"
+  resource_group_name = "${azurerm_resource_group.k8s.name}"
+  address_space = [
+    "10.1.0.0/16"
+  ]
+}
+
+resource "azurerm_subnet" "k8s" {
+  name = "subnet-${terraform.workspace}"
+  resource_group_name = "${azurerm_resource_group.k8s.name}"
+  address_prefix = "10.1.0.0/24"
+  virtual_network_name = "${azurerm_virtual_network.k8s.name}"
+}
+
 resource "azurerm_kubernetes_cluster" "k8s" {
   name = "${var.cluster_name}-${terraform.workspace}"
   location = "${azurerm_resource_group.k8s.location}"
@@ -47,6 +63,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     vm_size = "${lookup(var.workspace_to_vm_size, terraform.workspace)}"
     os_type = "Linux"
     os_disk_size_gb = "${var.os_disk_size_gb}"
+    vnet_subnet_id = "${azurerm_subnet.k8s.id}"
   }
 
   service_principal {
