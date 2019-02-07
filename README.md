@@ -23,6 +23,20 @@ az aks get-credentials -n tons-default -g tons-default --overwrite-existing
 
 kubectl get nodes
 
+# =================================================
+# New env...
+cd ../terraform
+terraform workspace new janus
+terraform apply -auto-approve
+az aks get-credentials -n tons-janus -g tons-janus --overwrite-existing --admin
+cd ../azure-ad
+./create-azure-ad-groups.sh
+kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+az aks get-credentials -n tons-janus -g tons-janus --overwrite-existing
+kubectl get nodes
+
+
+
 
 See helmfile stack project...
 
