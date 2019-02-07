@@ -20,7 +20,7 @@ resource "azurerm_azuread_service_principal_password" "k8s" {
   value = "${random_string.password.result}"
   end_date = "${var.service_principal_end_date}"
 
-# HACK: wait for service principal to come available
+  # HACK: wait for service principal to come available
   provisioner "local-exec" {
     command = "sleep 10"
   }
