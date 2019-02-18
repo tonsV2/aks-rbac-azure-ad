@@ -12,7 +12,7 @@ variable "service_principal_end_date" {
 }
 
 variable "kubernetes_version" {
-  default = "1.11.5"
+  default = "1.12.5"
 }
 
 variable "agent_count" {
