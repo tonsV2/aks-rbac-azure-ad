@@ -1,3 +1,12 @@
+# Disclaimer
+* This is a POC!!! Not ready for production!
+* Yes, the state is savable... But it's not done and there is no strategy in place
+* Even if the state is saved it might not be good for anything if MS make changes to AKS such as removing the version of Kubernetes which is used... as it was done with 1.11.5  
+* This file contains quite a few todo items... That's for a reason!
+
+
+
+
 # Use map, indexed by workspace, to fetch vm_size and other stuff which might differ by environment
 https://medium.com/capital-one-tech/deploying-multiple-environments-with-terraform-kubernetes-7b7f389e622
 
