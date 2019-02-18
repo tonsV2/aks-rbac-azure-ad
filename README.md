@@ -9,6 +9,12 @@ cd azure-ad/
 # =================================================
 # Export vars
 
+cd azure-ad/
+./create-azure-storage-account.sh
+
+# =================================================
+# Export vars
+
 cd ../terraform/
 terraform apply -auto-approve
 
