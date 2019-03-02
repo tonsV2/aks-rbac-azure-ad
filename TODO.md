@@ -1,7 +1,5 @@
 # Disclaimer
 * This is a POC!!! Not ready for production!
-* Yes, the state is savable... But it's not done and there is no strategy in place
-* Even if the state is saved it might not be good for anything if MS make changes to AKS such as removing the version of Kubernetes which is used... as it was done with 1.11.5  
 * This file contains quite a few todo items... That's for a reason!
 
 
