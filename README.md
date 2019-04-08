@@ -1,4 +1,12 @@
 cd azure-ad/
+./create-azure-storage-account.sh
+
+cd ../terraform
+
+# =================================================
+# Export vars
+
+cd azure-ad/
 ./create-azure-ad-server-app.sh
 
 # =================================================
@@ -9,23 +17,17 @@ cd azure-ad/
 # =================================================
 # Export vars
 
-cd azure-ad/
-./create-azure-storage-account.sh
-
-# =================================================
-# Export vars
-
 cd ../terraform/
 terraform apply -auto-approve
 
-az aks get-credentials -n tons-default -g tons-default --overwrite-existing --admin
+az aks get-credentials -n tons-janus -g aks-janus --overwrite-existing --admin
 
 cd ../azure-ad
 ./create-azure-ad-groups.sh
 
 kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
-az aks get-credentials -n tons-default -g tons-default --overwrite-existing
+az aks get-credentials -n tons-janus -g aks-janus --overwrite-existing
 
 kubectl get nodes
 
