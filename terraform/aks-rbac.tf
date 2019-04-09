@@ -79,7 +79,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 
   role_based_access_control {
-    enabled = 1
+    enabled = true
 
     azure_active_directory {
       server_app_id = "${var.rbac_server_app_id}"
