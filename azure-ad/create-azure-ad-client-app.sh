@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# TODO: replace by Terraform configuration file using azuread
+# See documentation here https://www.terraform.io/docs/providers/azuread/r/application.html
+#
+#
 set -e
 
 source .env
