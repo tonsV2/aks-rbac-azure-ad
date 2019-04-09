@@ -1,5 +1,5 @@
 #
-# Shouldn't the have a label that indicates environment type instead of just "k8s" ?
+# Shouldn't resources have a label that indicates environment type instead of just "k8s" ?
 #
 resource "azurerm_resource_group" "k8s" {
   name = "${var.resource_group_name}-${terraform.workspace}"
